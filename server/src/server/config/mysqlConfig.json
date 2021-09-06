@@ -1,0 +1,8 @@
+{
+    "development": {
+        "database": "blog",
+        "host": "localhost",
+        "user": "admin",
+        "password": "password"
+    }
+}
