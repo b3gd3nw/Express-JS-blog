@@ -39,16 +39,4 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-db.BlogPost = require("./blogpost")(sequelize, Sequelize);
-db.BlogCategory = require("./blogcategory")(sequelize, Sequelize);
-
-db.BlogPost.belongsToMany(db.BlogCategory, {
-  through: "blog_post_category",
-  foreignKey: "post_id",
-});
-db.BlogCategory.belongsToMany(db.BlogPost, {
-  through: "blog_post_category",
-  foreignKey: "category_id",
-});
-
 module.exports = db;
