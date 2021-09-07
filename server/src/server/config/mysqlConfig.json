@@ -1,8 +1,23 @@
 {
-    "development": {
-        "database": "blog",
-        "host": "localhost",
-        "user": "admin",
-        "password": "password"
-    }
+  "development": {
+    "username": "admin",
+    "password": "/Bb20011975",
+    "database": "blogjs",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "admin",
+    "password": "/Bb20011975",
+    "database": "blogjs",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "admin",
+    "password": "/Bb20011975",
+    "database": "blogjs",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
 }
