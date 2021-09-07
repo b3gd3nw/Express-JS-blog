@@ -5,15 +5,20 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/mysqlConfig.json')[env];
+const configPath = path.join(__dirname, '..', '/config/mysqlConfig.json');
+const config = require(configPath)[env];
+
 const db = {};
 
-let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
-}
+const sequelize = new Sequelize(
+  config.database,
+  config.username,
+  config.password,
+  {
+    host: "localhost",
+    dialect: "mysql",
+  }
+)
 
 fs
   .readdirSync(__dirname)
@@ -33,5 +38,17 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+db.BlogPost = require("./blogpost")(sequelize, Sequelize);
+db.BlogCategory = require("./blogcategory")(sequelize, Sequelize);
+
+db.BlogPost.belongsToMany(db.BlogCategory, {
+  through: "blog_post_category",
+  foreignKey: "post_id",
+});
+db.BlogCategory.belongsToMany(db.BlogPost, {
+  through: "blog_post_category",
+  foreignKey: "category_id",
+});
 
 module.exports = db;

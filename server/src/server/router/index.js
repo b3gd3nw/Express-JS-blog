@@ -1,9 +1,10 @@
 const express = require('express');
-const Router = express.Router();
+const router = express.Router();
+const postRouter = require('./post');
+const categoryRouter = require('./category');
 
-Router.post('/', (req, res) => {
-    console.log(req.body);
-    res.status(200).send('GOOD');
-})
 
-module.exports = Router;
+router.use('/', postRouter, categoryRouter);
+
+
+module.exports = router;
