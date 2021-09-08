@@ -44,3 +44,20 @@ module.exports.deletePost = async (req, res, next) => {
         return ErrorHandler.basicErrorHandler(err);
     }
 }
+
+module.exports.updatePost = async (req, res, next) => {
+    const { postId } = req.params;
+    const { title, text, image, categoryId } = req.body;
+    try {
+        const post = await db.BlogPost.update({
+            title,
+            image,
+            text,
+            categoryId,
+            updatedAt: new Date().getTime()
+        }, {where: { id: postId  }})
+        return res.status(201).json({"status": "ok", "message": "Update Post Successfully"})
+    }catch(err) {
+        return ErrorHandler.basicErrorHandler(err);
+    }
+}

@@ -25,4 +25,10 @@ postRouter.delete(
     postController.deletePost
 );
 
+postRouter.put(
+    '/update-post/:postId',
+
+    postController.updatePost
+);
+
 module.exports = postRouter;
