@@ -1,9 +1,9 @@
 const http = require('http');
 const app = require('./app')();
 require('dotenv').config();
-require('./server/dbMysql/mysql');
+require('./dbMysql/mysql');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
 const server = http.createServer(app);
 
